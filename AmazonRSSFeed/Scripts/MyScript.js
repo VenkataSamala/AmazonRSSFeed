@@ -1,12 +1,17 @@
-﻿var app = angular.module("myApp", ['ngSanitize']);
+﻿/// <reference path="angular-sanitize.js" />
+/// <reference path="angular-route.js" />
+/// <reference path="angular.js" />
+
+
+var app = angular.module("myApp", ['ngSanitize']);
 app.controller("myCtrl", function ($scope, $http, $location, PagerService) {
     $scope.items = [];
     $scope.allitems = [];
 
     $scope.pager = {};
 
-    $scope.getItems = function (itemType) {
-        $http.get('/Home/GetItems/?itemType=' + itemType)
+    $scope.getItems = function (inputText) {
+        $http.get('/Amazon/GetItems/?itemType=' + inputText)
             .then(function (response) {
                 $scope.items = [];
                 $scope.allitems = [];
