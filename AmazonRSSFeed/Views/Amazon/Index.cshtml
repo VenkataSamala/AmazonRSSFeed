@@ -3,6 +3,46 @@
     ViewBag.Title = "Amazon RSS Feed";
 }
 <script src="~/Scripts/angular.js"></script>
-
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
 <h2>Content Index</h2>
 
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="#" ng-click="getItems('ebooks')">EBOOKS</a>
+            </li>
+            <li>
+                <a href="#" ng-click="getItems('dvd')">DVD</a>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div ng-repeat="item in items">
+            <h4>{{item.Title}}</h4><br />
+            <div ng-bind-html="item.Description" data-html="true"></div>
+            <strong>PublisedDate:</strong> <i>{{item.PubDate}}</i> <br />
+
+        </div>
+        <ul ng-if="pager.pages.length" class="pagination">
+            <li ng-class="{disabled:pager.currentPage === 1}">
+                <a ng-click="setPage(1)">First</a>
+            </li>
+            <li ng-class="{disabled:pager.currentPage === 1}">
+                <a ng-click="setPage(pager.currentPage - 1)">Previous</a>
+            </li>
+            <li ng-repeat="page in pager.pages" ng-class="{active:pager.currentPage === page}">
+                <a ng-click="setPage(page)">{{page}}</a>
+            </li>
+            <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                <a ng-click="setPage(pager.currentPage + 1)">Next</a>
+            </li>
+            <li ng-class="{disabled:pager.currentPage === pager.totalPages}">
+                <a ng-click="setPage(pager.totalPages)">Last</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+</body>
