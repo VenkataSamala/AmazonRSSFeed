@@ -7,11 +7,9 @@ var app = angular.module("myApp", ['ngSanitize']);
 app.controller("myCtrl", function ($scope, $http, $location, PagerService) {
     $scope.items = [];
     $scope.allitems = [];
-
     $scope.pager = {};
-
     $scope.getItems = function (inputText) {
-        $http.get('/Amazon/GetItems/?itemType=' + inputText)
+        $http.get('/Amazon/GetFeeds/?inputText=' + inputText)
             .then(function (response) {
                 $scope.items = [];
                 $scope.allitems = [];
@@ -19,9 +17,7 @@ app.controller("myCtrl", function ($scope, $http, $location, PagerService) {
                     function (i, value) {
                         var r = {};
                         r.Title = value.Title;
-                        r.Guid_Id = value.Guid_Id;
-                        r.Link = value.Link;
-                        r.PubDate = value.PubDate;
+                        r.PublishDate = value.PublishDate;
                         r.Description = value.Description;
                         $scope.allitems.push(r);
                     });

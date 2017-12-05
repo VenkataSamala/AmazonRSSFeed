@@ -2,36 +2,43 @@
 @{
     ViewBag.Title = "Amazon RSS Feed";
 }
-<script src="~/Scripts/modernizr-2.6.2.js"></script>
-<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
 <script src="~/Scripts/bootstrap.js"></script>
 <script src="~/Scripts/jquery-1.10.2.js"></script>
 <script src="~/Scripts/angular.js"></script>
 <script src="~/Scripts/angular-route.js"></script>
 <script src="~/Scripts/angular-sanitize.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
-
+<script src="~/Scripts/MyScript.js"></script>
 <script src="~/Scripts/modernizr-2.6.2.js"></script>
+<link href="~/Content/bootstrap-lumen.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
+
 <h2>Content Index</h2>
 
 <body ng-app="myApp" ng-controller="myCtrl">
     <div class="sidebar">
         <ul>
             <li>
-                <a href="#" ng-click="getItems('ebooks')">EBOOKS</a>
+                
+                    <a href="#" ng-click="getItems('dvd')">DVD</a>
+          
             </li>
             <li>
-                <a href="#" ng-click="getItems('dvd')">DVD</a>
+                
+                    <a href="#" ng-click="getItems('ebooks')">EBooks</a>
+              
             </li>
         </ul>
     </div>
     <div class="content">
         <div ng-repeat="item in items">
-            <h3>{{item.Title}}</h3><br />
+            <h3 style="font-style:oblique">{{item.Title}}</h3><br />
             <div ng-bind-html="item.Description" data-html="true"></div>
-            <strong>PublisedDate:</strong> <i>{{item.PublishDate}}</i> <br />
-
+            <strong>PublisedDate:</strong><i>{{item.PublishDate}}</i><br />
         </div>
+        
+
         <ul ng-if="pager.pages.length" class="pagination">
             <li ng-class="{disabled:pager.currentPage === 1}">
                 <a ng-click="setPage(1)">First</a>

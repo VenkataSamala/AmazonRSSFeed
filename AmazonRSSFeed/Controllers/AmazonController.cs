@@ -9,8 +9,12 @@ namespace AmazonRSSFeed.Controllers
 {
     public class AmazonController : Controller
     {
+        public ActionResult Index()
+        {
+            return View();
+        }
         // GET: Amazon
-        public ActionResult Index(string inputText)
+        public ActionResult GetFeeds(string inputText)
         {
             return Json(XMLLoading.LoadFeeds(inputText), JsonRequestBehavior.AllowGet);
         }
